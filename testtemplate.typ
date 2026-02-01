@@ -1,11 +1,10 @@
 #import "template/polytech.typ": *
 
-#show: conf(theme: blue)[
+#show: conf(theme: blue, subject: "Template de test", doctitle: "Template")[
 
   #titlepage(
     logo: image("images/logo_cinetour.png"),
     authors: ("Maël Cornec", "Clément Reniers"),
-    title: "Démonstration Template Typst",
   )
 
   = Introduction

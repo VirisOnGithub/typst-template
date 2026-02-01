@@ -1,4 +1,4 @@
-#let conf(theme: none, it) = {
+#let conf(theme: none, doctitle: none, subject: none, it) = {
   let default-theme = if (theme != none) { theme.rgb() } else { luma(200).rgb() }
   state("theme", default-theme).update(default-theme)
 
@@ -8,7 +8,6 @@
   show outline.entry.where(level: 1): set text(fill: default-theme)
 
   show footnote.entry: set text(fill: default-theme)
-
 
   show link: set text(fill: default-theme)
 
@@ -33,6 +32,10 @@
     )
   }
 
+  set document(title: doctitle)
+
+  set page(footer: context align(right)[*#subject* #doctitle #h(1em) #counter(page).display("1")])
+
   it
 }
 
@@ -40,13 +43,12 @@
   outline(title: text("Table des matières", fill: black))
 )
 
-#let titlepage(logo: none, title: none, authors: none) = {
+#let titlepage(logo: none, authors: none) = {
   if (logo != none) {
     align(right, box(width: 80pt, logo))
     v(5em)
   }
-  text(size: 2em, weight: 900, title)
-  linebreak()
+  title()
   if (authors != none) {
     v(0.5em)
     for author in authors {
